@@ -1,0 +1,18 @@
+# Role -> Cortex model. Called only through core/llm.py (SNOWFLAKE.CORTEX.COMPLETE).
+# Each role tries `model`, then each `fallback` in order (2 attempts per model).
+roles:
+  planner:     # md_plan: writes the migration plan
+    model: claude-4-sonnet
+    fallback: [llama3.1-70b]
+    max_tokens: 8000
+    temperature: 0
+  evaluator:   # md_plan: reviews the plan, returns JSON issues
+    model: claude-4-sonnet
+    fallback: [llama3.1-70b]
+    max_tokens: 4000
+    temperature: 0
+  translator:  # cd_codegen: fills __PENDING_n__ slots
+    model: claude-4-sonnet
+    fallback: [llama3.1-70b]
+    max_tokens: 6000
+    temperature: 0

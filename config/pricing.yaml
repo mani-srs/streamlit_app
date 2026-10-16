@@ -1,0 +1,13 @@
+# Cortex COMPLETE credit rates used for ESTIMATED cost (billed credits come from ACCOUNT_USAGE).
+# Units: AI credits per 1,000,000 tokens, separately for input (prompt) and output (completion) tokens.
+# Rates differ by model and can change; recalibrate from your own billing on the Financial page
+# (Billing tab -> "Calibrate rates from billing"), which saves overrides to .state/settings.json.
+models:
+  claude-4-sonnet:
+    input_per_m: 1.8
+    output_per_m: 9.0
+    source: "fitted exactly to this account's billed CORTEX_AI_FUNCTIONS_USAGE_HISTORY rows, 2026-09-28"
+  llama3.1-70b:            # fallback model: no calibrated rate yet -> estimates show as unknown
+    input_per_m: null
+    output_per_m: null
+    source: "not calibrated"

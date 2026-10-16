@@ -1,0 +1,10 @@
+# Local runtime (Python 3.11+). Install:  .venv\Scripts\python -m pip install -r requirements.txt
+langgraph==1.2.12
+langgraph-checkpoint-sqlite==3.1.1
+sqlglot==26.33.0
+streamlit==1.64.0
+snowflake-connector-python==4.7.5
+pyarrow>=14.0.1,<24   # the connector rejects pyarrow 24+ on Python 3.14 (UserWarning otherwise)
+pandas>=2.2
+pyyaml>=6
+pytest>=9

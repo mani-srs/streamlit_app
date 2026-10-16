@@ -1,0 +1,17 @@
+# Medallion layer assignment for the classifier agent.
+# Evaluated in `precedence` order; first match wins. Reviewer overrides (layer: <FQN> = gold) beat everything.
+#   name   - regex on the object name
+#   graph  - source tables/streams with no in-slice upstream -> bronze; terminal views/dynamic tables -> gold
+#   schema - regex on the Snowflake schema name
+precedence: [name, graph, schema]
+default: silver
+layers:
+  bronze:
+    name_patterns: ["^RAW_", "^STG_", "^LND_", "_RAW$", "^SRC_"]
+    schema_patterns: ["RAW", "LANDING", "BRONZE", "STAGING"]
+  silver:
+    name_patterns: ["^INT_", "^CLEAN_", "_ENRICHED$", "^DT_"]
+    schema_patterns: ["SILVER", "INTEGRATION"]
+  gold:
+    name_patterns: ["^DIM_", "^FCT_", "^FACT_", "^AGG_", "^RPT_", "_MART$", "^MART_"]
+    schema_patterns: ["GOLD", "MART", "REPORTING", "PRESENTATION"]
